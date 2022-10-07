@@ -1,0 +1,33 @@
+from gpiozero import Button, LED
+from gpiozero import TrafficLights
+from gpiozero import Buzzer
+from time importsleep
+button = Button(21)
+led = LED(25)
+lights = TrafficLights(25, 8, 7)
+buzzer = Buzzer(15)
+while True:
+button.wait_for_press()
+print("Pressed")
+button.wait_for_release()
+print("Released")
+while True:
+led.blink()
+button.wait_for_press()
+led.off()
+button.wait_for_release()
+while True:
+lights.blink(2, 2)
+buzzer.beep()
+button.wait_for_press()
+lights.off()
+buzzer.off()
+button.wait_for_release()
+while True:
+lights.green.on()
+sleep(1)
+lights.amber.on()
+sleep(1)
+lights.red.on()
+sleep(1)
+lights.off()
